@@ -150,14 +150,13 @@
 
 <body>
 
-  <!-- 🔊 SOUND OVERLAY -->
   <div class="sound-overlay" id="soundOverlay">
     <span>🔊</span>
-    <h2>Tap to enable sound</h2>
-    <p>trust me, it’s cute 💕</p>
+    <h2>my baby panda..</h2>
+    <p> (tap the button)</p>
   </div>
 
-  <!-- 🎵 BACKGROUND MUSIC -->
+ 
   <audio id="bgMusic" loop muted autoplay preload="auto">
     <source src="./love.mp3" type="audio/mpeg">
   </audio>
@@ -168,7 +167,7 @@
     </div>
 
     <h1 id="valentineQuestion">Will you be my Valentine?</h1>
-    <p id="subtitle">pls say yes 🥺👉👈</p>
+    <p id="subtitle">pls queyebong pls 🥺👉👈</p>
 
     <div class="button-group" id="responseButtons">
       <button id="yesButton">Yes 💖</button>
@@ -187,11 +186,9 @@
     const subtitle = document.getElementById('subtitle');
     const responseButtons = document.getElementById('responseButtons');
 
-    // autoplay muted
+ 
     bgMusic.volume = 0.15;
     bgMusic.play().catch(() => {});
-
-    // FORCE interaction
     overlay.addEventListener('click', () => {
       bgMusic.muted = false;
       overlay.classList.add('hidden');
@@ -204,14 +201,24 @@
       "image5.gif","image6.gif","image7.gif"
     ];
 
-    noButton.addEventListener('click', () => {
-      if (noCount < 6) {
-        noCount++;
-        imageDisplay.src = "./images/" + images[noCount];
-        noButton.style.left = Math.random() * 80 - 40 + "px";
-        noButton.style.top = Math.random() * 40 - 20 + "px";
-      }
-    });
+  noButton.addEventListener('click', () => {
+
+  // If reaching second to last stage → remove NO button
+  if (noCount === images.length - 2) {
+    noButton.style.display = "none";
+    return;
+  }
+
+  // Normal progression
+  if (noCount < images.length - 1) {
+    noCount++;
+    imageDisplay.src = "./images/" + images[noCount];
+
+    noButton.style.left = Math.random() * 80 - 40 + "px";
+    noButton.style.top = Math.random() * 40 - 20 + "px";
+  }
+});
+
 
     yesButton.addEventListener('click', () => {
       subtitle.textContent = "best decision ever 😌";
