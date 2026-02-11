@@ -189,9 +189,16 @@
   </div>
 
  
-  <audio id="bgMusic" loop muted autoplay preload="auto">
-    <source src="./love.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop preload="auto">
+  <source src="/love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener("click", function () {
+    const audio = document.getElementById("bgMusic");
+    audio.play();
+  }, { once: true });
+</script>
 
   <div class="container">
     <div class="image-container">
