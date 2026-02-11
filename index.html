@@ -131,6 +131,38 @@
       opacity: 0.6;
     }
 
+
+
+    #itinerary {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: left;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+#itinerary h3 {
+  color: #bd1e59;
+  margin-bottom: 10px;
+}
+
+#itinerary ul {
+  list-style: none;
+  padding: 0;
+}
+
+#itinerary li {
+  margin-bottom: 8px;
+  color: #d9467a;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
     @keyframes floatUp {
       to {
         transform: translateY(-110vh) scale(1.5);
@@ -168,6 +200,8 @@
 
     <h1 id="valentineQuestion">Will you be my Valentine?</h1>
     <p id="subtitle">pls queyebong pls 🥺👉👈</p>
+    <div id="itinerary" style="display: none; margin-top: 20px;"></div>
+
 
     <div class="button-group" id="responseButtons">
       <button id="yesButton">Yes 💖</button>
@@ -220,11 +254,35 @@
 });
 
 
-    yesButton.addEventListener('click', () => {
-      subtitle.textContent = "best decision ever 😌";
-      responseButtons.style.display = "none";
-      confetti({ particleCount: 150, spread: 90 });
-    });
+const itinerary = document.getElementById("itinerary");
+
+yesButton.addEventListener('click', () => {
+  // Always force final image
+  imageDisplay.src = "./images/image7.gif";
+  noCount = images.length - 1;
+
+  valentineQuestion.textContent = "Yahoo! See you my baby panda! 🥰";
+  subtitle.textContent = "I love you so much!";
+
+  responseButtons.style.display = "none";
+
+  // Show itinerary
+  itinerary.style.display = "block";
+  itinerary.innerHTML = `
+    <h3>Weytey Valentine's Date</h3>
+    <ul>
+
+      <li>🍽️ Lunch Date with Gaby  @Lipa City TBD (HEHE)</li>
+      <li>📷 Photobooth</li>
+      <li>☕ Coffee @ any cafe</li>
+   
+ 
+    </ul>
+  `;
+
+  confetti({ particleCount: 150, spread: 90 });
+});
+
 
     setInterval(() => {
       const h = document.createElement('div');
